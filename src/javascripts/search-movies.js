@@ -25,7 +25,6 @@ function renderMarkup(movies) {
 
         if (image.src === 'https://image.tmdb.org/t/p/w1280') {
             image.src = 'https://image.tmdb.org/t/p/w1280/q0ZdIhd9Zb8mu3E6GFMSBoNqzYl.jpg'
-             console.log(image.src)
         }
         })
     showNotification();
