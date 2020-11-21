@@ -1,7 +1,7 @@
 import { ImageApiService } from './api-service';
 import { makesTrendingMkp } from './addTrendsMkp';
 import markupCard from '../templates/list_films.hbs';
-import paginationCard from '../templates/pagination.hbs';
+import { makesPagination, changePage, clearPagination, scrollMovies } from '../javascripts/searching-page-pagination';
 
 const refs = {
     searchForm: document.querySelector('.header-search'),
@@ -11,6 +11,7 @@ const refs = {
     pageButton: document.querySelector('.button-pages'),
     }
 const imageApiService = new ImageApiService();
+
 refs.searchForm.addEventListener('submit', searchForm);
 
 function searchForm(e) {
@@ -49,7 +50,7 @@ function showError() {
 
 function replaceImages() {
     const images = document.querySelectorAll('.js-image-src');
-    const brokenLink = 'https://image.tmdb.org/t/p/w1280';
+    const brokenLink = 'https://image.tmdb.org/t/p/w400';
     const defaultImage = 'https://bytes.ua/wp-content/uploads/2017/08/no-image.png';
     images.forEach(image => {
         if (image.src === brokenLink) {
@@ -58,36 +59,7 @@ function replaceImages() {
         })
 }
 
-function makesPagination() {
-    for (let i = 0; i < imageApiService.totalPages.length; i += 1) {
-        imageApiService.totalPages[i] = i + 1;
-        }
-    refs.pageButton.insertAdjacentHTML('beforeend', paginationCard(imageApiService.totalPages));
-    refs.pageButton.addEventListener('click', changePage);
+export { imageApiService, refs, renderMarkup };
 
-    const pages = document.querySelectorAll('.page');
-    
-    for (let i = 0; i < pages.length; i += 1) {
-        if (pages[i].id > 5)
-        pages[i].classList.add('ishidden')
-    }  
-}
-
-function changePage(e) {
-    imageApiService.setPage(e.target.textContent);
-    imageApiService.fetchImages().then(renderMarkup);  
-}
-
-function scrollMovies() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    })
-}
-
-function clearPagination() {
-    imageApiService.resetPage();
-    refs.pageButton.innerHTML = '';
-}
 
     
