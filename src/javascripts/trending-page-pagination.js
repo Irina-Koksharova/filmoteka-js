@@ -1,4 +1,5 @@
 import { makesTrendingMkp } from './addTrendsMkp';
+import {imageApiService, searchForm, renderMarkup} from './search-movies'
 // console.log(makesTrendingMkp);
 let page = 1;
 import refs from './pagination-btns-refs';
@@ -19,6 +20,10 @@ function onClickNextBtn(e) {
   page += 1;
   console.log(page);
   makesTrendingMkp(page);
+
+  if (imageApiService.searchQuery !== '') {
+    searchForm();
+  }
 }
 
 function onClickPreviousBtn(e) {

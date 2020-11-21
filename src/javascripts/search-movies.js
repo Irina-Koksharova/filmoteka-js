@@ -1,14 +1,17 @@
 import { ImageApiService } from './api-service';
 import { makesTrendingMkp } from './addTrendsMkp';
 import markupCard from '../templates/list_films.hbs';
-import { makesPagination, changePage, clearPagination, scrollMovies } from '../javascripts/searching-page-pagination';
+import { makesPagination, nextPage, moveRight, previousPage, moveLeft, changePage, scrollMovies, clearPagination, resetMove } from '../javascripts/searching-page-pagination';
 
 const refs = {
     searchForm: document.querySelector('.header-search'),
     imageGallery: document.querySelector('.js-gallery'),
     notification: document.querySelector('.header-notification'),
     paginationBlock: document.querySelector('.block-pagination'),
-    pageButton: document.querySelector('.button-pages'),
+    pageButton: document.querySelector('.block-pagination-list'),
+    buttonNext: document.querySelector('.block-pagination-right'),
+    buttonPrev:document.querySelector('.block-pagination-left'),
+
     }
 const imageApiService = new ImageApiService();
 
@@ -20,7 +23,8 @@ function searchForm(e) {
     imageApiService.fetchImages()
         .then(renderMarkup)
         .then(clearPagination)
-        .then(makesPagination);
+        .then(makesPagination)
+        .then(resetMove);
     refs.paginationBlock.classList.remove('ishidden');
 }
 
@@ -59,7 +63,6 @@ function replaceImages() {
         })
 }
 
-export { imageApiService, refs, renderMarkup };
-
+export { imageApiService, refs, searchForm, renderMarkup };
 
     
