@@ -3,6 +3,8 @@
   height: 40px;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
+  margin-bottom: 60px;
 }
 
 .ishidden {
@@ -48,6 +50,12 @@
   background-color: transparent;
   &:hover {
     color: $primaryTextColor;
+    background-color: $accentColor;
+  }
+  &.not-current {
+    background-color: transparent;
+  }
+  &.current {
     background-color: $accentColor;
   }
 }

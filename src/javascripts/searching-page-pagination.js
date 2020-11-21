@@ -45,9 +45,9 @@ function resetMove() {
 
 function changePage(e) {
     imageApiService.setPage(e.target.textContent);
-    imageApiService.fetchImages().then(renderMarkup);  
-    console.log(imageApiService.page)
+    imageApiService.fetchImages().then(renderMarkup);   
 }
+
 
 function scrollMovies() {
     window.scrollTo({

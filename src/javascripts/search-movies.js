@@ -10,7 +10,8 @@ const refs = {
     paginationBlock: document.querySelector('.block-pagination'),
     pageButton: document.querySelector('.block-pagination-list'),
     buttonNext: document.querySelector('.block-pagination-right'),
-    buttonPrev:document.querySelector('.block-pagination-left'),
+    buttonPrev: document.querySelector('.block-pagination-left'),
+    containerHidden: document.querySelector('.pages-container'),
 
     }
 const imageApiService = new ImageApiService();
@@ -26,6 +27,7 @@ function searchForm(e) {
         .then(makesPagination)
         .then(resetMove);
     refs.paginationBlock.classList.remove('ishidden');
+    refs.containerHidden.classList.add('ishidden');
 }
 
 function renderMarkup(movies) {
