@@ -4,3 +4,10 @@
     <button data-page="{{page}}" class="btn-page">{{page}}</button>
 </li>
 {{/each}} --}}
+
+{{!-- Нужно раскомментировать для пагинации Иры --}}
+{{#each this}}
+<li class="block-pagination-item" id={{this}}>
+    <button class="block-pagination-buttons">{{this}}</button>
+</li>
+{{/each}}
